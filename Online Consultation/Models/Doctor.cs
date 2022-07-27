@@ -14,8 +14,26 @@ namespace Online_Consultation.Models
         public int fees { get; set; }
         
     }
+
+    public class Medicine
+    {
+        public int id { get; set; }
+        public string mname { get; set; }
+
+        public int mprice { get; set; }
+
+        public DateTime mfg { get; set; }
+
+        public DateTime exp { get; set; }
+
+
+    }
     public class Department
     {
+        public int id { get; set; }
+
+        public string dname { get; set; }
+
 
     }
     public class Employee
@@ -40,6 +58,22 @@ namespace Online_Consultation.Models
     }
     public class Patientreport
     {
+        public int id { get; set; }
+
+
+        [ForeignKey("patient")]
+        public int pid { get; set; }
+        public Patient patient { get; set; }
+
+        [ForeignKey("doctor")]
+
+        public int did { get; set; }
+        public Doctor doctor { get; set; }
+
+        [ForeignKey("medicine")]
+
+        public int mid { get; set; }
+        public Medicine medicine { get; set; }
 
     }
     
