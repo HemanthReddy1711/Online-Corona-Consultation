@@ -12,11 +12,38 @@ namespace Online_Consultation.Models
         public string speciality { get; set; }
         public string Email{ get; set; }
         public int fees { get; set; }
+        
     }
+    public class Department
+    {
+
+    }
+    public class Employee
+    {
+        public int id { get; set; }
+        public string Empname { get; set; }
+        [ForeignKey("department")]
+
+        public int DepId { get; set; }
+        public Department department { get; set; }
+
+
+    }
+    
     public class Patient
     {
         public int id { get; set; }
+        public string Pname { get; set; }
+        public string address { get; set; }
+        public string Mobile{ get; set; }
+
     }
+    public class Patientreport
+    {
+
+    }
+    
+    
 
     public class Feedback
     {
