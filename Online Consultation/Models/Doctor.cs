@@ -6,15 +6,22 @@ namespace Online_Consultation.Models
     public class DoctorProfile
     {
         public int id { get; set; }
-        [DisplayName("Doctor Name")]
 
         [NotMapped]
         public IFormFile dImage { get; set; }
 
         public string docImageUrl { get; set; }
+
+        [DisplayName("Doctor Name")]
         public string Docname { get; set; }
+
+        [DisplayName("Speciality")]
         public string speciality { get; set; }
-        public string Email{ get; set; }
+        
+        [DisplayName("Email")]
+        public string email{ get; set; }
+
+        [DisplayName("Fees")]
         public int fees { get; set; }
         [DisplayName("Available Slots")]
         public string avail { get; set; }
@@ -30,18 +37,24 @@ namespace Online_Consultation.Models
     public class Medicine
     {
         public int id { get; set; }
+
+        [DisplayName("Medicine Name")]
         public string mname { get; set; }
 
+        [DisplayName("Medicine Price")]
         public int mprice { get; set; }
 
+        [DisplayName("Manufacturing Date")]
         public DateTime mfg { get; set; }
 
+        [DisplayName("Expiry Date")]
         public DateTime exp { get; set; }
     }
     public class Department
     {
         public int id { get; set; }
 
+        [DisplayName("Department Name")]
         public string dname { get; set; }
 
 
@@ -49,9 +62,10 @@ namespace Online_Consultation.Models
     public class Employee
     {
         public int id { get; set; }
+
+        [DisplayName("Employee Name")]
         public string Empname { get; set; }
         [ForeignKey("department")]
-
         public int DepId { get; set; }
         public Department department { get; set; }
     }
@@ -59,6 +73,8 @@ namespace Online_Consultation.Models
     public class PatientProfile
     {
         public int id { get; set; }
+
+        [DisplayName("Patient Name")]
         public string pname { get; set; }
 
         [NotMapped]
@@ -66,7 +82,10 @@ namespace Online_Consultation.Models
 
         public string pImageUrl { get; set; }
 
+        [DisplayName("Residential Address")]
         public string address { get; set; }
+
+        [DisplayName("Mobile Number")]
         public string Mobile{ get; set; }
 
     }
@@ -99,7 +118,9 @@ namespace Online_Consultation.Models
         [ForeignKey("patient")]
         public int pid { get; set; }
         public PatientProfile patient{ get; set; }
-        public string Description { get; set; }
+
+        [DisplayName("Description")]
+        public string description { get; set; }
 
         public byte rating { get; set; }
         public DateTime feedbackTime { get; set; }
@@ -109,9 +130,11 @@ namespace Online_Consultation.Models
     {
         public int id { get; set; }
 
+        [DisplayName("Name of Service")]
         public string name { get; set; }
 
-        public string description { get; set; }
+        [DisplayName("Description")]
+        public string serviceDetail { get; set; }
     }
 
     public class Billing
@@ -133,6 +156,7 @@ namespace Online_Consultation.Models
         public int did { get; set; }
         public DoctorProfile doctor { get; set; }
 
+        [DisplayName("Total Fees")]
         public int totalFee { get; set; }
 
     }
