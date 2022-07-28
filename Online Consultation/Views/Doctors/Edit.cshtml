@@ -1,71 +1,68 @@
 ﻿@using Online_Consultation
 @model Online_Consultation.Models.DoctorProfile
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <div class="row">
     <h2 style="color:mediumpurple">
-        Add a Doctor
+        Edit A Product
     </h2>
-    <form asp-action="Create" method="post" enctype="multipart/form-data">
-    <div class="p-4 rounded border">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border row">
         <div asp-validation-summary="ModelOnly" class="text-danger">
 
         </div>
-
-        <div class="form-group row">
-            <div class=",col-2">
+        <div class="col-8">
+             <div class="form-group row">
+            <div class="col-2">
                 <label asp-for="Docname"></label>
             </div>
             <div class="col-5">
                 <input asp-for="Docname" class="form-control" id="validationCustom05" required/>
-                <div class="invalid-feedback">
-                    Please give input
-                </div>
             </div>
+            </div>
+            <div class="form-group row">
             <span asp-validation-for="Docname" class="text-danger"></span>
-             <div class=",col-2">
+             <div class="col-2">
                 <label asp-for="speciality"></label>
             </div>
+            <input asp-for = "speciality" type="hidden"/>
             <div class="col-5">
                 <input asp-for="speciality" class="form-control" id="validationCustom05" required/>
-                <div class="invalid-feedback">
-                    Please give input
-                </div>
             </div>
             <span asp-validation-for="speciality" class="text-danger"></span>
-            <div class=",col-2">
+            <input type="hidden" asp-for="docImageUrl" hidden/>
+            </div>
+            <div class="form-group row">
+            <div class="col-2">
                 <label asp-for="email"></label>
             </div>
             <div class="col-5">
-                 <input asp-for="email" class="form-control" id="validationCustom05" required/>
-                <div class="invalid-feedback">
-                    Please give input
-                </div>
+                <input asp-for="email" class="form-control" id="validationCustom05" required/>
             </div>
             <span asp-validation-for="email" class="text-danger"></span>
-            <div class=",col-2">
+            </div>
+            <div class="form-group row">
+            <div class="col-2">
                 <label asp-for="dImage"> </label>
             </div>
             <div class="col-5">
-                <input asp-for="dImage" class="form-control" type="file" id="validationCustom05" required>
-                <div class="invalid-feedback">
-                    Please give input
-                </div>
+                <input asp-for="dImage" class="form-control" type="file">
             </div>
             <span asp-validation-for="dImage" class="text-danger"></span>
-            <div class=",col-2">
+            </div>
+            <div class="form-group row">
+            <div class="col-2">
                 <label asp-for="fees"></label>
             </div>
             <div class="col-5">
                 <input asp-for="fees" class="form-control" id="validationCustom05" required/>
-                <div class="invalid-feedback">
-                    Please give input
-                </div>
             </div>
             <span asp-validation-for="fees" class="text-danger"></span>
-             <div class=",col-2">
+            </div>
+            <div class="form-group row">
+             <div class="col-2">
                 <label asp-for="avail"></label>
             </div>
             <div class="col-5">
@@ -73,11 +70,19 @@
             </div>
             <span asp-validation-for="avail" class="text-danger"></span>
         </div>
-        <br />
         <div class="form-group">
-            <input class="btn btn-primary" value="save" type="submit"/>
-            <a asp-action="DoctorProfile" asp-controller="Doctors" class="btn btn-success"> Back to List</a>
+            <input class="btn btn-primary" value="Update" type="submit"/>
+            <a asp-action="DoctorProfile" class="btn btn-success"> Back to List</a>
         </div>
+        </div>
+         <div class="col-1">
+
+        </div>
+         <div class="col-3">
+             <img src="~/@Model.docImageUrl" width="100%"/>
+        </div>
+
+       
     </div>
 </form>
 </div>

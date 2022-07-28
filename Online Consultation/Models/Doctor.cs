@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Online_Consultation.Models
 {
-    public class DoctorProfile
+    public class DoctorProfile    //// hemanth
     {
         public int id { get; set; }
 
@@ -30,7 +30,7 @@ namespace Online_Consultation.Models
     }
 
 
-    public class Appointment
+    public class Appointment        //     
     {
         public int id { get; set; }
 
@@ -45,7 +45,7 @@ namespace Online_Consultation.Models
         public DoctorProfile doctor { get; set; }
     }
 
-    public class Medicine
+    public class Medicine     // mayank
     {
         public int id { get; set; }
 
@@ -61,7 +61,7 @@ namespace Online_Consultation.Models
         [DisplayName("Expiry Date")]
         public DateTime exp { get; set; }
     }
-    public class Department
+    public class Department   // 
     {
         public int id { get; set; }
 
@@ -70,7 +70,7 @@ namespace Online_Consultation.Models
 
 
     }
-    public class Employee
+    public class Employee   // sakshi
     {
         public int id { get; set; }
 
@@ -81,7 +81,7 @@ namespace Online_Consultation.Models
         public Department department { get; set; }
     }
     
-    public class PatientProfile
+    public class PatientProfile     // nandini
     {
         public int id { get; set; }
 
