@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Online_Consultation.Models
@@ -29,10 +30,20 @@ namespace Online_Consultation.Models
     }
 
 
-    //public class appointment
-    //{
+    public class Appointment
+    {
+        public int id { get; set; }
 
-    //}
+        public DateTime Date { get; set; }
+        [ForeignKey("patient")]
+        public int pid { get; set; }
+        public PatientProfile patient { get; set; }
+
+        [ForeignKey("doctor")]
+
+        public int did { get; set; }
+        public DoctorProfile doctor { get; set; }
+    }
 
     public class Medicine
     {
@@ -88,27 +99,29 @@ namespace Online_Consultation.Models
         [DisplayName("Mobile Number")]
         public string Mobile{ get; set; }
 
-    }
-    public class Patientreport
-    {
-        public int id { get; set; }
-
-
-        [ForeignKey("patient")]
-        public int pid { get; set; }
-        public PatientProfile patient { get; set; }
-
-        [ForeignKey("doctor")]
-
-        public int did { get; set; }
-        public DoctorProfile doctor { get; set; }
-
-        [ForeignKey("medicine")]
-
-        public int mid { get; set; }
-        public Medicine medicine { get; set; }
+        public string Email { get; set; }
 
     }
+    //public class Patientreport
+    //{
+    //    public int id { get; set; }
+
+
+    //    [ForeignKey("patient")]
+    //    public int pid { get; set; }
+    //    public PatientProfile patient { get; set; }
+
+    //    [ForeignKey("doctor")]
+
+    //    public int did { get; set; }
+    //    public DoctorProfile doctor { get; set; }
+
+    //    [ForeignKey("medicine")]
+
+    //    public int mid { get; set; }
+    //    public Medicine medicine { get; set; }
+
+    //}
     
     // appointment
 
@@ -160,5 +173,18 @@ namespace Online_Consultation.Models
         public int totalFee { get; set; }
 
     }
-    
+    public class DoctorDbContext : DbContext
+    {
+        public DoctorDbContext(DbContextOptions<DoctorDbContext> options) : base(options) { }
+        public DbSet<DoctorProfile> doctorsProfiles { get; set; }
+        public DbSet<Appointment> appointments { get; set; }
+        public DbSet<Medicine> medicines { get; set; }
+        public DbSet<Department> departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<PatientProfile> patientProfiles { get; set; }
+        public DbSet<Feedback> feedbacks { get; set; }
+        public DbSet<Service> services { get; set; }
+        public DbSet<Billing> billings { get; set; }
+    }
+
 }
