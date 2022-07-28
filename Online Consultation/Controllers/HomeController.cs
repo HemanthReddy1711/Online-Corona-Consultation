@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Online_Consultation.Models;
 using System.Diagnostics;
 
@@ -15,6 +16,7 @@ namespace Online_Consultation.Controllers
 
         public IActionResult Index()
         {
+            //var user = UserManager.FindByEmail(Email);
             return View();
         }
 
