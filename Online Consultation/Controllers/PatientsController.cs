@@ -51,6 +51,21 @@ namespace Online_Consultation.Controllers
             doctorDbContext.SaveChanges();
             return RedirectToAction(nameof(patientProfile));
         }
+        public IActionResult Delete(int? id)
+        {
+            return View(doctorDbContext.patientProfiles.FirstOrDefault(e => e.id == id));
+        }
+        [HttpPost]
+        public IActionResult Delete(PatientProfile patientProfile)
+        {
+            doctorDbContext.Remove(patientProfile);
+            doctorDbContext.SaveChanges();
+            return RedirectToAction(nameof(patientProfile));
+        }
+        public IActionResult Details(int? id)
+        {
+            return View(doctorDbContext.patientProfiles.FirstOrDefault(e => e.id == id));
+        }
         public IActionResult PatientProfile()
         {
             return View(doctorDbContext.patientProfiles.ToList());
