@@ -79,6 +79,12 @@ namespace Online_Consultation.Controllers
             {
                 v = new PatientProfile();
                 v.Email = us;
+                v.address = "change address";
+                v.pname = "change name";
+                v.pImageUrl = "Images/doc1.jpg";
+                v.Mobile = "change mobile";
+                doctorDbContext.patientProfiles.Add(v);
+                doctorDbContext.SaveChanges();
                 return View(v);
             }
             v.Email = us;
@@ -87,8 +93,12 @@ namespace Online_Consultation.Controllers
         [HttpPost]
         public IActionResult Profile(PatientProfile v)
         {
-            v.pImageUrl = "Images/doc1.jpg";
-
+            if (v.pImageUrl == null)
+            {
+                v.pImageUrl = "Images/doc1.jpg";
+            }
+            doctorDbContext.patientProfiles.Update(v);
+            doctorDbContext.SaveChanges();
             return RedirectToAction(nameof(Profile));
         }
     }

@@ -8,7 +8,7 @@ namespace Online_Consultation.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        public DoctorDbContext doctorDbContext;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -22,6 +22,12 @@ namespace Online_Consultation.Controllers
 
         public IActionResult Admin()
         {
+            return View();
+        }
+
+        public IActionResult getAppointment(int? id)
+        {
+
             return View();
         }
 
