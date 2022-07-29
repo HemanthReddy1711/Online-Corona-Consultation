@@ -30,7 +30,7 @@ namespace Online_Consultation.Models
     }
 
 
-    public class Appointment        //     
+    public class Appointment        //    hemanth  
     {
         public int id { get; set; }
 
@@ -61,7 +61,7 @@ namespace Online_Consultation.Models
         [DisplayName("Expiry Date")]
         public DateTime exp { get; set; }
     }
-    public class Department   // 
+    public class Department   // sakshi
     {
         public int id { get; set; }
 
@@ -125,7 +125,7 @@ namespace Online_Consultation.Models
     
     // appointment
 
-    public class Feedback
+    public class Feedback  //
     {
         public int id { get; set; }
         [ForeignKey("patient")]
@@ -139,7 +139,7 @@ namespace Online_Consultation.Models
         public DateTime feedbackTime { get; set; }
     }
 
-    public class Service
+    public class Service //  nandini
     {
         public int id { get; set; }
 
@@ -150,7 +150,7 @@ namespace Online_Consultation.Models
         public string serviceDetail { get; set; }
     }
 
-    public class Billing
+    public class Billing   // hemanth
     {
         public int id { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Online_Consultation.Models;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -68,7 +69,9 @@ namespace Online_Consultation.Controllers
         }
         public IActionResult PatientProfile()
         {
-            return View(doctorDbContext.patientProfiles.ToList());
+            string us = HttpContext.User.Identity.Name.ToString();
+            var v =  doctorDbContext.patientProfiles.Where(p => p.Email == us).ToList();
+            return View(v);
         }
         public IActionResult Profile()
         {
