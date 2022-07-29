@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Online_Consultation.Models;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
@@ -35,13 +36,13 @@ namespace Online_Consultation.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            var patients=doctorDbContext.patientProfiles.FirstOrDefault(e=>e.id==id);
+            var patients = doctorDbContext.patientProfiles.FirstOrDefault(e => e.id == id);
             return View(patients);
         }
         [HttpPost]
         public IActionResult Edit(PatientProfile patientProfile)
         {
-            if(patientProfile.pImage!=null)
+            if (patientProfile.pImage != null)
             {
                 var nam = Path.Combine(_env.WebRootPath + "/Images", Path.GetFileName(patientProfile.pImage.FileName));
                 patientProfile.pImage.CopyTo(new FileStream(nam, FileMode.Create));
@@ -51,13 +52,45 @@ namespace Online_Consultation.Controllers
             doctorDbContext.SaveChanges();
             return RedirectToAction(nameof(patientProfile));
         }
+        public IActionResult Delete(int? id)
+        {
+            return View(doctorDbContext.patientProfiles.FirstOrDefault(e => e.id == id));
+        }
+        [HttpPost]
+        public IActionResult Delete(PatientProfile patientProfile)
+        {
+            doctorDbContext.Remove(patientProfile);
+            doctorDbContext.SaveChanges();
+            return RedirectToAction(nameof(patientProfile));
+        }
+        public IActionResult Details(int? id)
+        {
+            return View(doctorDbContext.patientProfiles.FirstOrDefault(e => e.id == id));
+        }
         public IActionResult PatientProfile()
         {
             return View(doctorDbContext.patientProfiles.ToList());
         }
         public IActionResult Profile()
         {
-            return View();
+            string us = HttpContext.User.Identity.Name.ToString();
+            PatientProfile v = doctorDbContext.patientProfiles.FirstOrDefault(p => p.Email == us);
+            if (v == null)
+            {
+                v = new PatientProfile();
+                v.Email = us;
+                return View(v);
+            }
+            v.Email = us;
+            return View(v);
+        }
+        [HttpPost]
+        public IActionResult Profile(PatientProfile v)
+        {
+            v.pImageUrl = "Images/doc1.jpg";
+
+            return RedirectToAction(nameof(Profile));
         }
     }
 }
+
