@@ -1,69 +1,62 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Online_Consultation.Models;
 
 namespace Online_Consultation.Controllers
 {
-    public class EmployeesController : Controller
+    public class DepartmentsController : Controller
     {
         public DoctorDbContext doctorDbContext;
 
-        public EmployeesController(DoctorDbContext doctorDbContext)
+        public DepartmentsController(DoctorDbContext doctorDbContext)
         {
             this.doctorDbContext = doctorDbContext;
-           
+
         }
         public IActionResult Index()
         {
-
-            return View(doctorDbContext.Employees.ToList());
+            return View(doctorDbContext.departments.ToList());
         }
         public IActionResult Create()
         {
-            ViewData["savecat"] = new SelectList(doctorDbContext.departments, "id", "dname");
-
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Employee employeeProfile)
+        public IActionResult Create(Department departmentsection)
         {
 
-            doctorDbContext.Employees.Add(employeeProfile);
+            doctorDbContext.Add(departmentsection);
             doctorDbContext.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Edit(int? id)
         {
-            var employees=doctorDbContext.Employees.FirstOrDefault(e =>e.id==id);
-            return View(employees);
+            var dep = doctorDbContext.departments.FirstOrDefault(e => e.id == id);
+            return View(dep);
         }
         [HttpPost]
-        public IActionResult Edit(Employee employeeProfile)
+        public IActionResult Edit(Department departmentsection)
         {
-            doctorDbContext.Update(employeeProfile);
+            doctorDbContext.Update(departmentsection);
             doctorDbContext.SaveChanges();
             return RedirectToAction(nameof(Index));
 
         }
         public IActionResult Details(int? id)
         {
-            return View(doctorDbContext.Employees.FirstOrDefault(e => e.id == id));
-            
+            return View(doctorDbContext.departments.FirstOrDefault(e => e.id == id));
+
         }
         public IActionResult Delete(int? id)
         {
-            return View(doctorDbContext.Employees.FirstOrDefault(e => e.id == id));
+            return View(doctorDbContext.departments.FirstOrDefault(e => e.id == id));
         }
         [HttpPost]
-        public IActionResult Delete(Employee employeeProfile)
+        public IActionResult Delete(Department departmentsection )
         {
-            doctorDbContext.Remove(employeeProfile);
+            doctorDbContext.Remove(departmentsection);
             doctorDbContext.SaveChanges();
             return RedirectToAction(nameof(Index));
 
         }
-
-
-
     }
 }

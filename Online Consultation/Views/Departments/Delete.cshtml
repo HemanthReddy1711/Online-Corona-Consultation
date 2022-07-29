@@ -1,12 +1,12 @@
 ﻿@using Online_Consultation
-@model Online_Consultation.Models.Employee
+@model Online_Consultation.Models.Department
 @{
     ViewData["Title"] = "Delete";
 }
 
 <div class="row">
     <h2 style="color:mediumpurple">
-        Edit Employee
+        Edit Department
     </h2>
     <form asp-action="Delete" method="post" enctype="multipart/form-data">
     <div class="p-4 rounded border row">
@@ -16,26 +16,17 @@
         <div class="col-8">
              <div class="form-group row">
             <div class="col-6">
-                <label asp-for="Empname"></label>
+                <label asp-for="dname"></label>
             </div>
             <div class="col-6">
-                <input asp-for="Empname" readonly="readonly" class="form-control" id="validationCustom05" required/>
+                <input asp-for="dname" readonly="readonly" class="form-control" id="validationCustom05" required/>
             </div>
             </div>
             <div class="form-group row">
-            <span asp-validation-for="Empname" class="text-danger"></span>
+            <span asp-validation-for="dname" class="text-danger"></span>
             <br />
-             <div class="col-6">
-                <label asp-for="DepId"></label>
-            </div>
-            
-            <div class="col-6">
-                <input asp-for="DepId" readonly="readonly" class="form-control"  id="validationCustom05" required/>
-            </div>
-            <span asp-validation-for="DepId" class="text-danger"></span>
-            <br />
-            </div>  
-       
+           
+        </div>
         <div class="form-group">
             <input class="btn btn-danger" value="Delete" type="submit"/>
             <a asp-action="Index" class="btn btn-success"> Back to List</a>
@@ -44,7 +35,8 @@
          <div class="col-1">
 
         </div>
-        
+         
+
        
     </div>
 </form>

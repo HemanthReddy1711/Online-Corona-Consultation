@@ -1,8 +1,8 @@
 ﻿@using Online_Consultation
-@model Online_Consultation.Models.Employee
+@model Online_Consultation.Models.Department
 
 @{
-    ViewData["Title"] = "EmployeeProfile";
+    ViewData["Title"] = "Department";
 }
 
 <div class="row">
@@ -17,26 +17,16 @@
 
         <div class="form-group row">
             <div class=",col-2">
-                <label asp-for="Empname"></label>
+                <label asp-for="dname"></label>
             </div>
             <div class="col-5">
-                <input asp-for="Empname" class="form-control" id="validationCustom05" required/>
+                <input asp-for="dname" class="form-control" id="validationCustom05" required/>
                 <div class="invalid-feedback">
                     Please give input
                 </div>
             </div>
-            <span asp-validation-for="Empname" class="text-danger"></span>
-             <div class=",col-2">
-                <label asp-for="department.dname"></label>
-            </div>
-            <div class="col-5">
-                <select asp-for="DepId" class ="form-control" asp-items="ViewBag.savecat"></select>
-                <div class="invalid-feedback">
-                    Please give input
-                </div>
-            </div>
-            <span asp-validation-for="department.dname" class="text-danger"></span>
-           
+            <span asp-validation-for="dname" class="text-danger"></span>
+            
         </div>
         <br />
         <div class="form-group">
@@ -46,4 +36,3 @@
     </div>
 </form>
 </div>
-
