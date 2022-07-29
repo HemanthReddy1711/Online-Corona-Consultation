@@ -19,7 +19,7 @@ namespace Online_Consultation.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(doctorDbContext.doctorsProfiles.ToList());
         }
         public IActionResult Create()
         {
@@ -34,9 +34,45 @@ namespace Online_Consultation.Controllers
             doctorProfile.docImageUrl = "Images/" + doctorProfile.dImage.FileName;
             doctorDbContext.Add(doctorProfile);
             doctorDbContext.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(DoctorProfile));
         }
 
+        public IActionResult Edit(int? id)
+        {
+            var doctors = doctorDbContext.doctorsProfiles.FirstOrDefault(e => e.id == id);
+            return View(doctors);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(DoctorProfile doctorProfile)
+        {
+            if (doctorProfile.dImage != null)
+            {
+                var nam = Path.Combine(_env.WebRootPath + "/Images", Path.GetFileName(doctorProfile.dImage.FileName));
+                doctorProfile.dImage.CopyTo(new FileStream(nam, FileMode.Create));
+                doctorProfile.docImageUrl = "Images/" + doctorProfile.dImage.FileName;
+            }
+            doctorDbContext.Update(doctorProfile);
+            doctorDbContext.SaveChanges();
+            return RedirectToAction(nameof(DoctorProfile));
+        }
+
+        public IActionResult Details(int? id)
+        {
+            return View(doctorDbContext.doctorsProfiles.FirstOrDefault(e => e.id == id));
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            return View(doctorDbContext.doctorsProfiles.FirstOrDefault(e => e.id == id));
+        }
+        [HttpPost]
+        public IActionResult Delete(DoctorProfile doctorProfile)
+        {
+            doctorDbContext.Remove(doctorProfile);
+            doctorDbContext.SaveChanges();
+            return RedirectToAction(nameof(DoctorProfile));
+        }
         public IActionResult DoctorProfile()
         {
             return View(doctorDbContext.doctorsProfiles.ToList());
