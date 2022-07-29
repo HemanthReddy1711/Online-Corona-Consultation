@@ -55,5 +55,9 @@ namespace Online_Consultation.Controllers
         {
             return View(doctorDbContext.patientProfiles.ToList());
         }
+        public IActionResult Profile()
+        {
+            return View();
+        }
     }
 }
