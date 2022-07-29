@@ -36,13 +36,13 @@ namespace Online_Consultation.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            var patients=doctorDbContext.patientProfiles.FirstOrDefault(e=>e.id==id);
+            var patients = doctorDbContext.patientProfiles.FirstOrDefault(e => e.id == id);
             return View(patients);
         }
         [HttpPost]
         public IActionResult Edit(PatientProfile patientProfile)
         {
-            if(patientProfile.pImage!=null)
+            if (patientProfile.pImage != null)
             {
                 var nam = Path.Combine(_env.WebRootPath + "/Images", Path.GetFileName(patientProfile.pImage.FileName));
                 patientProfile.pImage.CopyTo(new FileStream(nam, FileMode.Create));
@@ -69,13 +69,28 @@ namespace Online_Consultation.Controllers
         }
         public IActionResult PatientProfile()
         {
-            string us = HttpContext.User.Identity.Name.ToString();
-            var v =  doctorDbContext.patientProfiles.Where(p => p.Email == us).ToList();
-            return View(v);
+            return View(doctorDbContext.patientProfiles.ToList());
         }
         public IActionResult Profile()
         {
-            return View();
+            string us = HttpContext.User.Identity.Name.ToString();
+            PatientProfile v = doctorDbContext.patientProfiles.FirstOrDefault(p => p.Email == us);
+            if (v == null)
+            {
+                v = new PatientProfile();
+                v.Email = us;
+                return View(v);
+            }
+            v.Email = us;
+            return View(v);
+        }
+        [HttpPost]
+        public IActionResult Profile(PatientProfile v)
+        {
+            v.pImageUrl = "Images/doc1.jpg";
+
+            return RedirectToAction(nameof(Profile));
         }
     }
 }
+
