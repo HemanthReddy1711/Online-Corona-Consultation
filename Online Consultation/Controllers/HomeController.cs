@@ -2,16 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Online_Consultation.Models;
 using System.Diagnostics;
+using System.Dynamic;
 
 namespace Online_Consultation.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public DoctorDbContext doctorDbContext;
-        public HomeController(ILogger<HomeController> logger)
+        public DoctorDbContext _doctorDbContext;
+        public HomeController(ILogger<HomeController> logger, DoctorDbContext doctorDbContext)
         {
             _logger = logger;
+            _doctorDbContext = doctorDbContext;
         }
 
         public IActionResult Index()
@@ -27,8 +29,7 @@ namespace Online_Consultation.Controllers
 
         public IActionResult getAppointment(int? id)
         {
-
-            return View();
+            return View(_doctorDbContext.doctorsProfiles.FirstOrDefault(c => c.id == id));
         }
 
         public IActionResult Privacy()

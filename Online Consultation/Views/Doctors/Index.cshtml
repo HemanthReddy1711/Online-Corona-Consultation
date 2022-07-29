@@ -52,9 +52,8 @@
                     </span>
                 </div>
                 <div class="p-3 text-center text-white mt-3 cursor shoe-bg">
-                    <a class="text-uppercase" asp-action="">
-                        Get Appointment Now
-                    </a>
+                    <!--<input class="btn btn-primary" value="getAppointment Now" type="submit"/> -->
+                    <a asp-action="getAppointment" asp-controller="Home" asp-route-id="@item.id"> Get Appointment</a>
                 </div>
             </div>
         </div>
