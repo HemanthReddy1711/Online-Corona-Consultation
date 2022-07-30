@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Online_Consultation.Models;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
@@ -16,7 +17,7 @@ namespace Online_Consultation.Controllers
             this.doctorDbContext = doctorDbContext;
             this._env = env;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             return View(doctorDbContext.doctorsProfiles.ToList());
