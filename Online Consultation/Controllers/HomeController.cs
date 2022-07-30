@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Dynamic;
 using Stripe.Infrastructure;
 using Razorpay.Api;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Online_Consultation.Controllers
 {
@@ -25,7 +26,7 @@ namespace Online_Consultation.Controllers
             //var user = UserManager.FindByEmail(Email);
             return View();
         }
-
+        [Authorize]
         public IActionResult Admin()
         {
             return View();

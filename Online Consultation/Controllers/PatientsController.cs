@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Online_Consultation.Models;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
@@ -71,6 +72,7 @@ namespace Online_Consultation.Controllers
         {
             return View(doctorDbContext.patientProfiles.ToList());
         }
+        [Authorize]
         public IActionResult Profile()
         {
             string us = HttpContext.User.Identity.Name.ToString();
