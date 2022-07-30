@@ -22,6 +22,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
+    <PackageReference Include="Razorpay" Version="3.0.0" />
+    <PackageReference Include="Stripe.net" Version="39.126.0" />
   </ItemGroup>
 
   <ItemGroup>
