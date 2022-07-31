@@ -95,9 +95,11 @@ namespace Online_Consultation.Controllers
         [HttpPost]
         public IActionResult Profile(PatientProfile v)
         {
-            if (v.pImageUrl == null)
+            if (v.pImage != null)
             {
-                v.pImageUrl = "Images/doc1.jpg";
+                var nam = Path.Combine(_env.WebRootPath + "/Images", Path.GetFileName(v.pImage.FileName));
+                v.pImage.CopyTo(new FileStream(nam, FileMode.Create));
+                v.pImageUrl = "Images/" + v.pImage.FileName;
             }
             doctorDbContext.patientProfiles.Update(v);
             doctorDbContext.SaveChanges();

@@ -47,14 +47,32 @@
                     </span>
                 </div>
                 <div class="mt-3 text-dark">
-                    <span style="color:green">
-                       Available
-                    </span>
+                    @if(item.avail.ToUpper()=="TRUE")
+                            {
+                                <span style="color:green">
+                                Available
+                                </span>
+                            }
+                     @if(item.avail.ToUpper()=="FALSE")
+                            {
+                                <span style="color:red">
+                                Slots Not Available
+                                </span>
+                            }
+                            
+                    
                 </div>
                 <div class="p-3 text-center text-white mt-3 cursor shoe-bg">
                     <!--<input class="btn btn-primary" value="getAppointment Now" type="submit"/> -->
-                    <a asp-action="getAppointment" asp-controller="Home" asp-route-id="@item.id"> Get Appointment</a>
-                </div>
+                    @if(item.avail.ToUpper()=="TRUE")
+                            {
+                                <a asp-action="getAppointment" asp-controller="Home" asp-route-id="@item.id"> Get Appointment</a>
+                            }
+                    @if(item.avail.ToUpper()=="FALSE")
+                            {
+                                <a class="disabled" style="color:#777;"> Get Appointment</a>
+                            }
+                        </div>
             </div>
         </div>
     </div>

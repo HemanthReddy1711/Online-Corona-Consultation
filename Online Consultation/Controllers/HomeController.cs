@@ -6,6 +6,7 @@ using System.Dynamic;
 using Stripe.Infrastructure;
 using Razorpay.Api;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Online_Consultation.Controllers
 {
@@ -32,15 +33,20 @@ namespace Online_Consultation.Controllers
             return View();
         }
 
+
+
         public IActionResult getAppointment(int? id) 
         {
-            //DoctorProfile dc = _doctorDbContext.doctorsProfiles.FirstOrDefault(c => c.id == id);
-            //string us = HttpContext.User.Identity.Name.ToString();
-            //PatientProfile p = _doctorDbContext.patientProfiles.FirstOrDefault(p => p.Email == us);
-            //dynamic obj = new ExpandoObject();
-            //obj.Patient = p;
-            //obj.Doctor = dc;
-            return View(_doctorDbContext.doctorsProfiles.FirstOrDefault(c => c.id == id));
+            DoctorProfile dc = _doctorDbContext.doctorsProfiles.FirstOrDefault(c => c.id == id);
+            string us = HttpContext.User.Identity.Name.ToString();
+            PatientProfile p = _doctorDbContext.patientProfiles.FirstOrDefault(p => p.Email == us);
+            Appointment a = new Appointment();
+            a.Date = DateTime.Now;
+            a.pid = p.id;
+            a.patient = p;
+            a.doctor = dc;
+            a.did = dc.id;
+            return View(a);
         }
         public IActionResult ConfirmAppointment(int? id)
         {
@@ -70,17 +76,76 @@ namespace Online_Consultation.Controllers
 
         public IActionResult Success(PayOptions pay)
         {
-            Appointment b = new Appointment();
-            var products = _doctorDbContext.doctorsProfiles.FirstOrDefault(p => p.id == pay.productid);
+           Billing b =  new Billing();
+            var doctor = _doctorDbContext.doctorsProfiles.FirstOrDefault(p => p.id == pay.productid);
             string us = HttpContext.User.Identity.Name.ToString();
             PatientProfile p = _doctorDbContext.patientProfiles.FirstOrDefault(p => p.Email == us);
             b.pid = p.id;
-            b.did = products.id;
-            b.Date = DateTime.UtcNow;
+            b.did = doctor.id;
+            b.doctor = doctor;
+            b.patient = p;
+            b.billingdate = DateTime.UtcNow;
+            b.mid = 1;
+            b.mdesc = " ";
+            b.totalFee = doctor.fees;
+            _doctorDbContext.billings.Add(b);
+            _doctorDbContext.SaveChanges();
+            return View(b);
+        }
+        //[HttpPost]
+        //public IActionResult Success(Appointment a)
+        //{
+        //    a.Date = DateTime.Now;
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        public IActionResult Billing(int? id)
+        {
+            //string us = HttpContext.User.Identity.Name.ToString();
+            //PatientProfile p = _doctorDbContext.patientProfiles.FirstOrDefault(p => p.Email == us);
+            //DoctorProfile dc = _doctorDbContext.doctorsProfiles.FirstOrDefault(c => c.id == id);
+            //Billing a = new Billing();
+            //a.billingdate = DateTime.Now;
+            //a.doctor = dc;
+            //a.did = dc.id;
+            //a.mid = 1;
+            //a.billingdate = DateTime.UtcNow;
+            //a.mid = 1;
+            //a.pid = p.id;
+            //a.mdesc = " ";
+            //a.totalFee = dc.fees;
+            //_doctorDbContext.billings.Add(a);
+            //_doctorDbContext.SaveChanges();
+            //int b = a.id;
+            //a.id= b;
             return View();
         }
 
-        public String Createorder(DoctorProfile products)
+        //[HttpPost]
+        //public IActionResult Billing(Billing b)
+        //{
+        //    Billing dc = _doctorDbContext.billings.FirstOrDefault(c => c.id == b.id);
+        //    dc.mdesc = b.mdesc;
+        //    _doctorDbContext.billings.Update(dc);
+        //    _doctorDbContext.SaveChanges();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        public IActionResult MyAppointments()
+        {
+            string us = HttpContext.User.Identity.Name.ToString();
+            PatientProfile p = _doctorDbContext.patientProfiles.FirstOrDefault(p => p.Email == us);
+            List<Billing> b = _doctorDbContext.billings.Where(c => c.pid == p.id).Include(d=>d.doctor).Include(p=>p.patient).ToList();
+            return View(b);
+        }
+
+
+
+
+
+
+
+            public String Createorder(DoctorProfile products)
         {
             try
             {
