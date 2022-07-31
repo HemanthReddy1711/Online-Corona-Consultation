@@ -1,4 +1,4 @@
-﻿@model Online_Consultation.Models.DoctorProfile
+﻿@model Online_Consultation.Models.Appointment
 @using Online_Consultation.Models
 @{
     ViewData["Title"] = "getAppointment";
@@ -6,7 +6,7 @@
 
 <div class="row">
     <h2 style="color:mediumpurple">
-        Conform Appointment details
+        Appointment details
     </h2>
     <form asp-action="getAppointment" method="post" enctype="multipart/form-data">
     <div class="p-4 rounded border row">
@@ -16,65 +16,88 @@
         <div class="col-8">
              <div class="form-group row">
             <div class="col-6">
-                <label asp-for="Docname"></label>
+                <label asp-for="doctor.Docname"></label>
             </div>
             <div class="col-6">
-                <input asp-for="Docname" readonly="readonly" class="form-control" id="validationCustom05" required/>
+                <input asp-for="doctor.Docname" readonly="readonly" class="form-control" id="validationCustom05" required/>
             </div>
             </div>
             <div class="form-group row">
-            <span asp-validation-for="Docname" class="text-danger"></span>
+            <span asp-validation-for="doctor.Docname" class="text-danger"></span>
+            <br />
+            <div class="col-6">
+                <label asp-for="patient.pname"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="patient.pname" readonly="readonly" class="form-control" id="validationCustom05" required/>
+            </div>
+            </div>
+            <div class="form-group row">
+            <span asp-validation-for="patient.pname" class="text-danger"></span>
             <br />
              <div class="col-6">
-                <label asp-for="speciality"></label>
+                <label asp-for="doctor.speciality"></label>
             </div>
-            <input asp-for = "docImageUrl" readonly="readonly" type="hidden"/>
+            <input asp-for = " doctor.docImageUrl" readonly="readonly" type="hidden"/>
             <div class="col-6">
-                <input asp-for="speciality" readonly="readonly" class="form-control"  id="validationCustom05" required/>
+                <input asp-for="doctor.speciality" readonly="readonly" class="form-control"  id="validationCustom05" required/>
             </div>
-            <span asp-validation-for="speciality" class="text-danger"></span>
+            <span asp-validation-for="doctor.speciality" class="text-danger"></span>
             <br />
             </div>
             <div class="form-group row">
             <div class="col-6">
-                <label asp-for="email"></label>
+                <label > Doctor Email</label>
             </div>
             <div class="col-6">
-               <input asp-for="email" readonly="readonly" class="form-control"  id="validationCustom05" required/>
+               <input asp-for="doctor.email" readonly="readonly" class="form-control"  id="validationCustom05" required/>
             </div>
-            <span asp-validation-for="email" class="text-danger"></span>
+            <span asp-validation-for="doctor.email" class="text-danger"></span>
             <br />
             </div>
             <div class="form-group row">
             <div class="col-6">
-                <label asp-for="fees"></label>
+                <label> Patient Email</label>
             </div>
             <div class="col-6">
-                <input asp-for="fees" readonly="readonly" class="form-control" id="validationCustom05" required/>
+               <input asp-for="patient.Email" readonly="readonly" class="form-control"  id="validationCustom05" required/>
             </div>
-            <span asp-validation-for="fees" class="text-danger"></span>
+            <span asp-validation-for="patient.Email" class="text-danger"></span>
+            <br />
+            </div>
+            <div class="form-group row">
+            <div class="col-6">
+                <label asp-for="doctor.fees"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="doctor.fees" readonly="readonly" class="form-control" id="validationCustom05" required/>
+            </div>
+            <span asp-validation-for="doctor.fees" class="text-danger"></span>
             <br />
             </div>
             <div class="form-group row">
              <div class="col-6">
-                <label asp-for="avail"></label>
+                <label> Slots</label>
             </div>
             <div class="col-6">
-                <input asp-for="avail"disabled readonly="readonly" type="checkbox"/>
+                <input asp-for="doctor.avail"disabled hidden/>
+                <span style="color:green">
+                    Slotes are Available
+                </span>
             </div>
-            <span asp-validation-for="avail" class="text-danger"></span>
+            <span asp-validation-for="doctor.avail" class="text-danger"></span>
             <br />
         </div>
         <div class="form-group">
-            <a class="btn btn-primary" asp-action="ConfirmAppointment" asp-route-id="@Model.id">Confirm Appointment  </a>
-            <a asp-action="Index" class="btn btn-success"> Back to All Doctors</a>
+            <a class="btn btn-primary" asp-action="ConfirmAppointment" asp-route-id="@Model.doctor.id">Confirm Appointment  </a>
+            <a asp-action="Index" asp-controller="Doctors" class="btn btn-success"> Back to All Doctors</a>
         </div>
         </div>
          <div class="col-1">
 
         </div>
          <div class="col-3">
-             <img src="~/@Model.docImageUrl" width="100%"/>
+             <img src="~/@Model.doctor.docImageUrl" width="100%"/>
         </div>
         </div>
             <!--

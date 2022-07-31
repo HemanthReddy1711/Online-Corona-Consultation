@@ -158,6 +158,8 @@ namespace Online_Consultation.Models
         [ForeignKey("medicine")]
         public int mid { get; set; }
 
+        public string mdesc { get; set; }
+
         public Medicine medicine { get; set; }
 
         [ForeignKey("patient")]
