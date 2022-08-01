@@ -27,7 +27,7 @@ namespace Online_Consultation.Controllers
             //var user = UserManager.FindByEmail(Email);
             return View();
         }
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public IActionResult Admin()
         {
             return View();
@@ -131,11 +131,12 @@ namespace Online_Consultation.Controllers
         //    return RedirectToAction(nameof(Index));
         //}
 
+        [Authorize]
         public IActionResult MyAppointments()
         {
             string us = HttpContext.User.Identity.Name.ToString();
             PatientProfile p = _doctorDbContext.patientProfiles.FirstOrDefault(p => p.Email == us);
-            List<Billing> b = _doctorDbContext.billings.Where(c => c.pid == p.id).Include(d=>d.doctor).Include(p=>p.patient).ToList();
+            List<Billing> b = _doctorDbContext.billings.Where(c => c.pid == p.id).Include(d=>d.doctor).Include(p=>p.patient).OrderByDescending(p=>p.billingdate).ToList();
             return View(b);
         }
 
