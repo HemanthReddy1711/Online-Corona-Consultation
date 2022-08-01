@@ -29,6 +29,12 @@
             <th>
                 date taken appointment
             </th>
+            <th>
+                Chat
+            </th>
+            <th>
+                Feedback
+            </th>
         </tr>
         @foreach(var p in Model)
         {
@@ -51,6 +57,12 @@
             </td>
             <td>
                 @p.billingdate
+            </td>
+            <td>
+                <input class="btn btn-primary" value="Chat" type="submit"/>
+            </td>
+            <td>
+                 <a class="btn btn-success"> Give feedback</a>
             </td>
         </tr>
         }
