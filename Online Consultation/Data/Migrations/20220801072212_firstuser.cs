@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace Online_Consultation.Migrations
+namespace Online_Consultation.Data.Migrations
 {
-    public partial class First : Migration
+    public partial class firstuser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
