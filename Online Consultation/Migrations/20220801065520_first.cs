@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Online_Consultation.Migrations
 {
-    public partial class firstmigration : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -142,6 +142,7 @@ namespace Online_Consultation.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     billingdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     mid = table.Column<int>(type: "int", nullable: false),
+                    mdesc = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     pid = table.Column<int>(type: "int", nullable: false),
                     did = table.Column<int>(type: "int", nullable: false),
                     totalFee = table.Column<int>(type: "int", nullable: false)

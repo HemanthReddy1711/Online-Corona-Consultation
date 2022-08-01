@@ -12,8 +12,8 @@ using Online_Consultation.Data;
 namespace Online_Consultation.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220729061135_firstuserdata")]
-    partial class firstuserdata
+    [Migration("20220801072212_firstuser")]
+    partial class firstuser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

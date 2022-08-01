@@ -12,8 +12,8 @@ using Online_Consultation.Models;
 namespace Online_Consultation.Migrations
 {
     [DbContext(typeof(DoctorDbContext))]
-    [Migration("20220728051846_First")]
-    partial class First
+    [Migration("20220801065520_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,6 +63,10 @@ namespace Online_Consultation.Migrations
 
                     b.Property<int>("did")
                         .HasColumnType("int");
+
+                    b.Property<string>("mdesc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("mid")
                         .HasColumnType("int");
