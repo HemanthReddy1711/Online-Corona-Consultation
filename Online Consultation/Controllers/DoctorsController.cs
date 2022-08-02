@@ -17,7 +17,7 @@ namespace Online_Consultation.Controllers
             this.doctorDbContext = doctorDbContext;
             this._env = env;
         }
-        [Authorize(Roles ="Admin")]
+       
         public IActionResult Index()
         {
             return View(doctorDbContext.doctorsProfiles.ToList());
