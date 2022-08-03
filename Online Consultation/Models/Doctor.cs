@@ -135,7 +135,7 @@ namespace Online_Consultation.Models
         [DisplayName("Description")]
         public string description { get; set; }
 
-        [DisplayName("Rating")]
+        [DisplayName("Rating (Out of 5)")]
 
         public int rating { get; set; }
 
