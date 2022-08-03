@@ -1,0 +1,61 @@
+﻿@using Online_Consultation
+@model Online_Consultation.Models.Feedback
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <h2 style="color:mediumpurple">
+        Give feedback
+    </h2>
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+
+        <div class="form-group row">
+            <div class=",col-2">
+                <label asp-for="description"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="description" class="form-control" id="validationCustom05" required/>
+                <div class="invalid-feedback">
+                    Please give input
+                </div>
+            </div>
+            <span asp-validation-for="description" class="text-danger"></span>
+             <div class=",col-2">
+                <label asp-for="rating"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="rating" class="form-control" id="validationCustom05" required/>
+                <div class="invalid-feedback">
+                    Please give input
+                </div>
+            </div>
+            <span asp-validation-for="rating" class="text-danger"></span>
+            
+
+
+
+            <div class=",col-2">
+                <label asp-for="feedbackTime"> </label>
+            </div>
+            <div class="col-5">
+                <input asp-for="feedbackTime" class="form-control"id="validationCustom05" required>
+                <div class="invalid-feedback">
+                    Please give input
+                </div>
+            </div>
+            <span asp-validation-for="feedbackTime" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input class="btn btn-primary" value="save" type="submit"/>
+            <a asp-action="Index" asp-controller="Feedbacks" class="btn btn-success"> Back to List</a>
+        </div>
+    </div>
+</form>
+</div>
+

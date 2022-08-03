@@ -135,7 +135,12 @@ namespace Online_Consultation.Models
         [DisplayName("Description")]
         public string description { get; set; }
 
-        public byte rating { get; set; }
+        [DisplayName("Rating")]
+
+        public int rating { get; set; }
+
+        [DisplayName("Feedback Time")]
+
         public DateTime feedbackTime { get; set; }
     }
 

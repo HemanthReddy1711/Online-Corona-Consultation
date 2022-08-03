@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Online_Consultation.Models;
 
 namespace Online_Consultation.Data
 {
@@ -9,5 +10,6 @@ namespace Online_Consultation.Data
             : base(options)
         {
         }
+        public DbSet<Online_Consultation.Models.Feedback>? Feedback { get; set; }
     }
 }
