@@ -33,8 +33,7 @@ namespace Online_Consultation.Controllers
             return View();
         }
 
-
-
+        [Authorize]
         public IActionResult getAppointment(int? id) 
         {
             DoctorProfile dc = _doctorDbContext.doctorsProfiles.FirstOrDefault(c => c.id == id);
