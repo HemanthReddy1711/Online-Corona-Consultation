@@ -59,7 +59,7 @@
                 @p.billingdate
             </td>
             <td>
-                <input class="btn btn-primary" value="Chat" type="submit"/>
+                <a asp-action="Index" asp-controller="Home" asp-route-id="@p.doctor.id,@p.patient.id"> Get Appointment</a>
             </td>
             <td>
                  <a class="btn btn-success"> Give feedback</a>

@@ -27,13 +27,13 @@ namespace Online_Consultation.Controllers
             //var user = UserManager.FindByEmail(Email);
             return View();
         }
-        [Authorize(Roles ="Admin")]
+        //Admin
+        [Authorize(Roles = "Admin")]
         public IActionResult Admin()
         {
             return View();
         }
 
-        [Authorize]
         public IActionResult getAppointment(int? id) 
         {
             DoctorProfile dc = _doctorDbContext.doctorsProfiles.FirstOrDefault(c => c.id == id);
