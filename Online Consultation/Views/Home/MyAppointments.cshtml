@@ -62,7 +62,7 @@
                 <a asp-action="Index" asp-controller="Home" asp-route-id="@p.doctor.id,@p.patient.id"> Get Appointment</a>
             </td>
             <td>
-                 <a class="btn btn-success"> Give feedback</a>
+                 <a asp-action="Create" asp-controller="Feedbacks" asp-route-id="@p.doctor.id" asp-route-id2="@p.patient.id">Give FeedBack</a>
             </td>
         </tr>
         }

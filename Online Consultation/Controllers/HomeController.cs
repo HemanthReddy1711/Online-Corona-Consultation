@@ -27,8 +27,6 @@ namespace Online_Consultation.Controllers
             //var user = UserManager.FindByEmail(Email);
             return View();
         }
-        //Admin
-        [Authorize(Roles = "Admin")]
         public IActionResult Admin()
         {
             return View();

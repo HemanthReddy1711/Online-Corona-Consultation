@@ -130,7 +130,12 @@ namespace Online_Consultation.Models
         public int id { get; set; }
         [ForeignKey("patient")]
         public int pid { get; set; }
-        public PatientProfile patient{ get; set; }
+        public PatientProfile patient { get; set; }
+
+        [ForeignKey("doctor")]
+        public int did { get; set; }
+
+        public DoctorProfile doctor{ get; set; }    
 
         [DisplayName("Description")]
         public string description { get; set; }
